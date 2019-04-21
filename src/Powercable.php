@@ -64,7 +64,6 @@ class Powercable {
     public $imageworkdays = []; // array of timestamps
     public $workdays = []; // array of timestamps
     public $bankhols = []; // array of "Y-m-d" dates
-    public $workdays_boolean = []; // array of booleans
     public $products_for_timescale = []; // array of strings
 
     /*
@@ -72,6 +71,7 @@ class Powercable {
      * These are the outputs...
      */
     public $outcome_message = []; // array of strings
+    public $workdays_boolean = []; // array of booleans
     public $image_message = []; // array of strings
     
     /********************
