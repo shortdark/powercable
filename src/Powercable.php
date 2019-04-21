@@ -80,6 +80,8 @@ class Powercable {
 
     /**
      * Working backwards from the end date, are we able to process something in n days from now?
+     *
+     * Output: $this->image_message
      */
     public function latestStartTime(){
         $this->getBankHolidays();
@@ -100,6 +102,10 @@ class Powercable {
     /**
      * Getting the acceptable dates can be done with only today's date and the number of days required, $n
      * Calculating the boolean requires the end time to be set
+     *
+     * E.g. when someone is allowed to order something, needs one more day than processing
+     *
+     * Output: $this->workdays_boolean
      */
     public function earliestEndTime(){
         $this->getBankHolidays();
