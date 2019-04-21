@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
+use Shortdark\Powercable;
 
 final class PowercableTest extends TestCase
 {
