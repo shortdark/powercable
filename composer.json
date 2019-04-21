@@ -1,9 +1,11 @@
 {
     "name": "shortdark/powercable",
     "description": "Checks to see if the current time or start time/date is far enough away from an end date/time.",
+    "keywords": ["time","dates","future"],
+    "homepage": "https://github.com/shortdark/powercable",
     "license": "MIT",
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.0.0"
     },
     "authors": [
         {
