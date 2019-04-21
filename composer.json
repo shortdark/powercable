@@ -1,6 +1,7 @@
 {
     "name": "shortdark/powercable",
     "description": "Checks to see if the current time or start time/date is far enough away from an end date/time.",
+    "license": "MIT",
     "require": {
         "php": ">=7.0"
     },
