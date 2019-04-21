@@ -10,7 +10,9 @@
  * Date: 11/02/2019
  * Time: 16:23
  */
+
 namespace Shortdark;
+
 class Powercable {
     /********************
      ** CONFIG
@@ -21,24 +23,29 @@ class Powercable {
      * i.e. we're going to calculate values from 1 day, all the way up to n days
      */
     public $n=4;
+
     /*
      * Integer (24 hour clock)
      * When do we want the cutoff time to be?
      */
     public $cutoff = 12; // When is the cutoff time for both one and two day items? (24 hour clock), integer (just the hour)
+
     /*
      * Bank Holiday JSON files...
      */
     public $json_url = 'https://www.gov.uk/bank-holidays.json'; // JSON API
     private $local_json = './bank-holidays.json'; // local copy of JSON API
+
     /********************
      ** VARIABLES
      ********************/
+
     /*
      * Unix timestamp
      * Should be provided in most use cases
      */
     public $endtime;
+
     /*
      * Unix timestamp
      * This is either provided, or we just use the current date/time
@@ -48,6 +55,7 @@ class Powercable {
     public $starttime;
     public $cutoff_string = ''; // This is the human-readable cutoff time for the tribute, string
     public $after_cutoff; // boolean
+
     /*
      * Arrays used to calculate stuff
      * Some of these may be useful in their own right, for example,
@@ -58,6 +66,7 @@ class Powercable {
     public $bankhols = []; // array of "Y-m-d" dates
     public $workdays_boolean = []; // array of booleans
     public $products_for_timescale = []; // array of strings
+
     /*
      * Arrays
      * These are the outputs...
@@ -68,6 +77,7 @@ class Powercable {
     /********************
      ** PUBLIC FUNCTIONS
      ********************/
+
     /**
      * Working backwards from the end date, are we able to process something in n days from now?
      */
@@ -86,6 +96,7 @@ class Powercable {
             $this->populateImageMessages();
         }
     }
+
     /**
      * Getting the acceptable dates can be done with only today's date and the number of days required, $n
      * Calculating the boolean requires the end time to be set
@@ -108,9 +119,11 @@ class Powercable {
             $this->calculateBooleans();
         }
     }
+
     /********************
      ** PRIVATE FUNCTIONS
      ********************/
+
     /**
      * Calculate the start date for the one or two days work...
      */
@@ -126,6 +139,7 @@ class Powercable {
             $this->starttime = $this->nextWorkingDayTimestamp($this->starttime);
         }
     }
+
     /**
      * If the start date is not set, use today (now)
      */
@@ -136,6 +150,7 @@ class Powercable {
             $this->starttime = date('U');
         }
     }
+
     /**
      * @param string $datetimestamp
      * @return false|int|string
@@ -149,6 +164,7 @@ class Powercable {
         }
         return $datetimestamp;
     }
+
     /**
      * Is the current time ($startdate) after the cutoff time?
      */
@@ -158,6 +174,7 @@ class Powercable {
             $this->after_cutoff = true;
         }
     }
+
     /**
      * Make the array with the dates needed for 1 day lead time, 2 days, etc
      * This checks for bank holidays and weekends as it goes
@@ -170,6 +187,7 @@ class Powercable {
             $temp = $this->imageworkdays[$j];
         }
     }
+
     /**
      * What day is it? How early can the service be?
      */
@@ -181,6 +199,7 @@ class Powercable {
             $temp = $this->workdays[$j];
         }
     }
+
     /**
      * Check whether a date is on a weekend or not
      *
@@ -198,6 +217,7 @@ class Powercable {
         }
         return false;
     }
+
     /**
      * Check a date to see if it's a bank holiday
      * Date format YYYY-mm-dd
@@ -218,6 +238,7 @@ class Powercable {
         }
         return false;
     }
+
     /**
      * Convert a timestamp into the previous work day (not weekend or bank holiday)
      *
@@ -246,6 +267,7 @@ class Powercable {
         }
         return $datetimestamp;
     }
+
     /**
      * Change a timestamp into the next working day (not bank holidays or weekends)
      *
@@ -274,6 +296,7 @@ class Powercable {
         }
         return $datetimestamp;
     }
+
     /**
      * Get the bank holidays from the Government API
      * The government API should get updated yearly,
@@ -292,6 +315,7 @@ class Powercable {
             }
         }
     }
+
     /**
      * This boolean is whether the work day is in time for the end date
      * False is too late, i.e. can't be done
@@ -311,6 +335,7 @@ class Powercable {
             }
         }
     }
+
     /**
      * Generate the array for the products for each array item
      */
@@ -323,6 +348,7 @@ class Powercable {
         $this->products_for_timescale[4] = "product";
         $this->products_for_timescale[5] = "product";
     }
+
     /**
      * Using the dates we've calculated, make the messages that say when the cutoff times are for 1 day, 2 days, etc.
      * This is for the family upload image page.
@@ -335,6 +361,7 @@ class Powercable {
             $j++;
         }
     }
+
     /**
      * The warning/error message on the order page
      */
@@ -349,6 +376,7 @@ class Powercable {
             $j++;
         }
     }
+
     /**
      * Converts the 24-hour cutoff integer into a human-readable format
      */
@@ -364,4 +392,5 @@ class Powercable {
         }
         $this->cutoff_string = $humancutofftime . $cutoff_meridiem;
     }
+    
 }
