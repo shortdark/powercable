@@ -384,6 +384,8 @@ class Powercable {
         if(12 <= $this->cutoff){
             if(12 < $this->cutoff){
                 $humancutofftime = $this->cutoff - 12;
+            }else{
+                $humancutofftime = $this->cutoff;
             }
             $cutoff_meridiem = 'PM';
         }else{
@@ -392,5 +394,5 @@ class Powercable {
         }
         $this->cutoff_string = $humancutofftime . $cutoff_meridiem;
     }
-    
+
 }
