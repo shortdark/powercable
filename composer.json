@@ -1,0 +1,12 @@
+{
+    "name": "shortdark/powercable",
+    "require": {
+        "php": ">=7.0"
+    },
+    "authors": [
+        {
+            "name": "neil",
+            "email": "neil@shortdark.net"
+        }
+    ]
+}
