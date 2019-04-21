@@ -72,6 +72,11 @@ class Powercable {
      * Working backwards from the end date, are we able to process something in n days from now?
      */
     public function latestStartTime(){
+        $this->getBankHolidays();
+        $this->humanReadableCutoff();
+        $this->populateProductTimeArray();
+        $this->outcomeMessages();
+
         // Make sure we have the end date as 0 hours
         $this->endtime = $this->resetDateToMidnight($this->endtime);
         // Work backwards from the end date to get the time the users need to upload by
@@ -86,6 +91,11 @@ class Powercable {
      * Calculating the boolean requires the end time to be set
      */
     public function earliestEndTime(){
+        $this->getBankHolidays();
+        $this->humanReadableCutoff();
+        $this->populateProductTimeArray();
+        $this->outcomeMessages();
+
         // Calculate when the first work day will be
         $this->calculateWorkStartDate();
         // start date set to 0 hours
@@ -353,14 +363,5 @@ class Powercable {
             $cutoff_meridiem = 'AM';
         }
         $this->cutoff_string = $humancutofftime . $cutoff_meridiem;
-    }
-    /**
-     * Powercable constructor.
-     */
-    function __construct(){
-        $this->getBankHolidays();
-        $this->humanReadableCutoff();
-        $this->populateProductTimeArray();
-        $this->outcomeMessages();
     }
 }
