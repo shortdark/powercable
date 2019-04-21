@@ -8,5 +8,10 @@
             "name": "neil",
             "email": "neil@shortdark.net"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Shortdark\\": "src/"
+        }
+    }
 }
