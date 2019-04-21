@@ -1,7 +1,7 @@
 # powercable
 
-Lightswitch creates an array of unique integers when you specify the lowest integer, the highest integer and the volume of integers you require.
-
+Powercable tells you from the start time and end time whether a product that takes n days is able to be ordered. 
+Also, working backwards from the end time, do we have enough time to process the order.
 
 ## Installation
 
