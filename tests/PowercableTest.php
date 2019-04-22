@@ -7,6 +7,8 @@ use Shortdark\Powercable;
 final class PowercableTest extends TestCase
 {
 
+    //This test will not work because resetDateToMidnight() is a private function
+    
     public function testCanBeUsedAsString()
     {
         $this->assertEquals(
